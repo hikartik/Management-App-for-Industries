@@ -1,0 +1,26 @@
+<!-- CustomerID | CustomerName  | ContactNumber | Email                  | Address -->
+
+<h2>Customer Records</h2>
+<table>
+  <thead>
+    <tr>
+      <th>CustomerId</th>
+      <th>CustomerName</th>
+      <th>ContactNumber</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    {% for row in data %}
+
+      <td>row[0]</td>
+      <td>row[1]</td>
+      <td>row[2]</td>
+      <td class="warning">row[3]</td>
+      <td class="primary">Update</td>
+    </tr>
+    
+  </tbody>
+</table>
+<a href="#">Show All</a>
