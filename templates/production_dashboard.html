@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UI/UX</title>
+    <title>production</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0"
@@ -656,14 +660,168 @@ MEDIA QUERY PHONE
           margin-bottom: 40px;
         }
       }
+
+      /* Your existing CSS styles remain here */
+
+      /* Popup Form Styles */
+      .popup-form {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+      }
+
+      .form-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%; /* Adjusted width */
+        max-width: 600px; /* Maximum width */
+        background: linear-gradient(
+          135deg,
+          #3498db,
+          #8e44ad
+        ); /* Mixed background color */
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .form-container h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: #fff;
+      }
+
+      .form-group {
+        margin-bottom: 30px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #fff;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+        transition: background-color 0.3s ease;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        background-color: rgba(255, 255, 255, 1); /* Fully opaque white */
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 2rem;
+        color: #fff;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .close-btn:hover {
+        color: #f1c40f; /* Yellow color on hover */
+      }
+
+      button[type="submit"] {
+        display: inline-block;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        color: #fff;
+        background-color: #e74c3c; /* Red color for save button */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #c0392b; /* Darker red color on hover */
+      }
+
+      /* Styling for payment status */
+      select#paymentStatus {
+        appearance: none;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        border: 2px solid var(--clr-primary);
+        border-radius: 5px;
+
+        color: var(--clr-primary);
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+      }
+
+      select#paymentStatus:hover,
+      select#paymentStatus:focus {
+        border-color: var(--clr-success);
+        outline: none;
+      }
+
+      /* Custom select container */
+      .select-container {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Hide the default select arrow */
+      .select-container select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* Custom select arrow */
+      .select-container::after {
+        content: "\25BC"; /* Unicode character for down arrow */
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      /* Style for options */
+      .select-container select option {
+        padding: 8px 16px;
+      }
+
+      /* Hover effect for options */
+      .select-container select option:hover {
+        background-color: #f0f0f0;
+      }
+
+      /* Other CSS styles remain unchanged */
     </style>
   </head>
+
   <body>
     <div class="container">
       <aside>
         <div class="top">
           <div class="logo">
-            <h2>MY <span class="danger">-COMPANY</span></h2>
+            <h2>My<span class="danger">Company</span></h2>
           </div>
           <div class="close" id="close_btn">
             <span class="material-symbols-sharp"> close </span>
@@ -671,51 +829,35 @@ MEDIA QUERY PHONE
         </div>
         <!-- end top -->
         <div class="sidebar">
+          <a href="#" class="active">
+            <span class="material-symbols-sharp">grid_view</span>
+            <h3>Dashboard</h3>
+          </a>
+          <a href="#" id="addProductBtn">
+            <span class="material-symbols-sharp">add_circle</span>
+            <h3>Add New Product</h3>
+          </a>
+          <a href="#" id="updateQuantityBtn">
+            <span class="material-symbols-sharp">update</span>
+            <h3>Update Quantity</h3>
+          </a>
+          <a href="#" id="rawMaterialRequirementsBtn">
+            <span class="material-symbols-sharp">inventory</span>
+            <h3>Raw Material Requirements</h3>
+          </a>
+          <a href="#" id="showProductDetailsBtn">
+            <span class="material-symbols-sharp">visibility</span>
+            <h3>Show Product Details</h3>
+          </a>
           <a href="#">
-            <span class="material-symbols-sharp">grid_view </span>
-            <h3>Dashbord</h3>
-          </a>
-          <a href="#" onclick="loadEmployees()">
-            <span class="material-symbols-sharp">person_outline </span>
-            <h3>Employees</h3>
-          </a>
-          <a href="#" onclick="loadTransactions()">
-            <span class="material-symbols-sharp">insights </span>
-            <h3>Sales & Transactions</h3>
-          </a>
-          <a href="#" onclick="loadCustomers()">
-            <span class="material-symbols-sharp">mail_outline </span>
-            <h3>Customers</h3>
-          </a>
-          <a href="#" onclick="loadProducts()">
-            <span class="material-symbols-sharp">receipt_long </span>
-            <h3>Products</h3>
-          </a>
-          <a href="#" onclick="loadSuppliers()">
-            <span class="material-symbols-sharp">report_gmailerrorred </span>
-            <h3>Suppliers</h3>
-          </a>
-          <a href="#" onclick="loadInventory()">
-            <span class="material-symbols-sharp">settings </span>
-            <h3>Inventory</h3>
-          </a>
-
-          <a href="#" onclick="signout()">
             <span class="material-symbols-sharp">logout</span>
             <h3>Logout</h3>
           </a>
         </div>
       </aside>
-      <!-- --------------
-        end asid
-      -------------------- -->
-
-      <!-- --------------
-        start main part
-      --------------- -->
 
       <main>
-        <h1>Manager Dashbord</h1>
+        <h1>Production Department</h1>
 
         <div class="date">
           <input type="date" />
@@ -724,7 +866,7 @@ MEDIA QUERY PHONE
         <div class="insights">
           <!-- start seling -->
           <div class="sales">
-            <span class="material-symbols-sharp">trending_up</span>
+            <span class="material-symbols-sharp">trending_down</span>
             <div class="middle">
               <div class="left">
                 <h3>Total Sales</h3>
@@ -734,7 +876,9 @@ MEDIA QUERY PHONE
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
-                <div class="number"><p>80%</p></div>
+                <div class="number">
+                  <p>80%</p>
+                </div>
               </div>
             </div>
             <small>Last 24 Hours</small>
@@ -752,7 +896,9 @@ MEDIA QUERY PHONE
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
-                <div class="number"><p>80%</p></div>
+                <div class="number">
+                  <p>80%</p>
+                </div>
               </div>
             </div>
             <small>Last 24 Hours</small>
@@ -770,7 +916,9 @@ MEDIA QUERY PHONE
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
-                <div class="number"><p>80%</p></div>
+                <div class="number">
+                  <p>80%</p>
+                </div>
               </div>
             </div>
             <small>Last 24 Hours</small>
@@ -778,15 +926,52 @@ MEDIA QUERY PHONE
           <!-- end seling -->
         </div>
         <!-- end insights -->
-        <div class="recent_order"></div>
+        <div class="recent_order">
+          <h2>Recent Orders</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Product Number</th>
+                <th>Payments</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mini USB</td>
+                <td>4563</td>
+                <td>Due</td>
+                <td class="warning">Pending</td>
+                <td class="primary">Details</td>
+              </tr>
+              <tr>
+                <td>Mini USB</td>
+                <td>4563</td>
+                <td>Due</td>
+                <td class="warning">Pending</td>
+                <td class="primary">Details</td>
+              </tr>
+              <tr>
+                <td>Mini USB</td>
+                <td>4563</td>
+                <td>Due</td>
+                <td class="warning">Pending</td>
+                <td class="primary">Details</td>
+              </tr>
+              <tr>
+                <td>Mini USB</td>
+                <td>4563</td>
+                <td>Due</td>
+                <td class="warning">Pending</td>
+                <td class="primary">Details</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="#">Show All</a>
+        </div>
       </main>
-      <!------------------
-         end main
-        ------------------->
 
-      <!----------------
-        start right main 
-      ---------------------->
       <div class="right">
         <div class="top">
           <button id="menu_bar">
@@ -799,283 +984,267 @@ MEDIA QUERY PHONE
           </div>
           <div class="profile">
             <div class="info">
-              <p><b>{{user_name[0]}}</b></p>
-              <p>{{position}}</p>
+              <p><b>Babar</b></p>
+              <p>Admin</p>
               <small class="text-muted"></small>
             </div>
-            <div class="profile-photo">
-              <img src="./images/profile-1.jpg" alt="" />
-            </div>
+            <div class="profile_pic"></div>
           </div>
+          <!-- end profile -->
         </div>
-
-        <div class="recent_updates">
-          <h2>Recent Update</h2>
-          <div class="updates">
-            <div class="update">
-              <div class="profile-photo">
-                <img src="./images/profile-4.jpg" alt="" />
-              </div>
-              <div class="message">
-                <p><b>Babar</b> Recived his order of USB</p>
-              </div>
-            </div>
-            <div class="update">
-              <div class="profile-photo">
-                <img src="./images/profile-3.jpg" alt="" />
-              </div>
-              <div class="message">
-                <p><b>Ali</b> Recived his order of USB</p>
-              </div>
-            </div>
-            <div class="update">
-              <div class="profile-photo">
-                <img src="./images/profile-2.jpg" alt="" />
-              </div>
-              <div class="message">
-                <p><b>Ramzan</b> Recived his order of USB</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sales-analytics">
-          <h2>Sales Analytics</h2>
-
-          <div class="item onlion">
-            <div class="icon">
-              <span class="material-symbols-sharp">shopping_cart</span>
-            </div>
-            <div class="right_text">
-              <div class="info">
-                <h3>Onlion Orders</h3>
-                <small class="text-muted">Last seen 2 Hours</small>
-              </div>
-              <h5 class="danger">-17%</h5>
-              <h3>3849</h3>
-            </div>
-          </div>
-          <div class="item onlion">
-            <div class="icon">
-              <span class="material-symbols-sharp">shopping_cart</span>
-            </div>
-            <div class="right_text">
-              <div class="info">
-                <h3>Onlion Orders</h3>
-                <small class="text-muted">Last seen 2 Hours</small>
-              </div>
-              <h5 class="success">-17%</h5>
-              <h3>3849</h3>
-            </div>
-          </div>
-          <div class="item onlion">
-            <div class="icon">
-              <span class="material-symbols-sharp">shopping_cart</span>
-            </div>
-            <div class="right_text">
-              <div class="info">
-                <h3>Online Orders</h3>
-                <small class="text-muted">Last seen 2 Hours</small>
-              </div>
-              <h5 class="danger">-17%</h5>
-              <h3>3849</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="item add_product">
-          <div>
-            <span class="material-symbols-sharp">add</span>
-          </div>
-        </div>
+        <!-- end top -->
       </div>
     </div>
+    <!-- end container -->
+    <!-- Add New Product Form -->
+    <div class="popup-form" id="addProductForm">
+      <div class="form-container">
+        <span class="close-btn" id="closeAddProductForm">&times;</span>
+        <h2>Add New Product</h2>
+        <form id="addProductForm">
+          <div class="form-group">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required />
+          </div>
+          <div class="form-group">
+            <label for="productCategory">Category:</label>
+            <input
+              type="text"
+              id="productCategory"
+              name="productCategory"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="productQuantity">Quantity in Stock:</label>
+            <input
+              type="number"
+              id="productQuantity"
+              name="productQuantity"
+              value="0"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="productPrice">Unit Price:</label>
+            <input
+              type="number"
+              id="productPrice"
+              name="productPrice"
+              required
+            />
+          </div>
+          <button type="submit">Add Product</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Update Quantity Form -->
+    <div class="popup-form" id="updateQuantityForm">
+      <div class="form-container">
+        <span class="close-btn" id="closeUpdateQuantityForm">&times;</span>
+        <h2>Update Product Quantity</h2>
+        <form id="updateQuantityForm">
+          <div class="form-group">
+            <label for="productId">Product ID:</label>
+            <input type="text" id="productId" name="productId" required />
+          </div>
+          <div class="form-group">
+            <label for="quantityToAdd">Quantity to Add:</label>
+            <input
+              type="number"
+              id="quantityToAdd"
+              name="quantityToAdd"
+              required
+            />
+          </div>
+          <button type="submit">Update Quantity</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Raw Material Requirements Form -->
+    <div class="popup-form" id="rawMaterialRequirementsForm">
+      <div class="form-container">
+        <span class="close-btn" id="closeRawMaterialRequirementsForm"
+          >&times;</span
+        >
+        <h2>Raw Material Requirements</h2>
+        <form id="rawMaterialRequirementsForm">
+          <div class="form-group select-container">
+            <label for="supplierId">Supplier ID:</label>
+            <select id="supplierId" name="supplierId" required>
+              <option value="1">Supplier 1</option>
+              <option value="2">Supplier 2</option>
+              <option value="3">Supplier 3</option>
+              <!-- Add options for all suppliers -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="materialName">Material Name:</label>
+            <input type="text" id="materialName" name="materialName" required />
+          </div>
+          <div class="form-group">
+            <label for="materialDescription">Description:</label>
+            <input
+              type="text"
+              id="materialDescription"
+              name="materialDescription"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="materialPrice">Unit Price:</label>
+            <input
+              type="number"
+              id="materialPrice"
+              name="materialPrice"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="materialQuantity">Quantity:</label>
+            <input
+              type="number"
+              id="materialQuantity"
+              name="materialQuantity"
+              required
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Show Product Details Form -->
+    <div class="popup-form" id="showProductDetailsForm">
+      <div class="form-container">
+        <span class="close-btn" id="closeShowProductDetailsForm">&times;</span>
+        <h2>Show Product Details</h2>
+        <form id="showProductDetailsForm">
+          <div class="form-group">
+            <label for="productIdToShow">Product ID:</label>
+            <input
+              type="text"
+              id="productIdToShow"
+              name="productIdToShow"
+              required
+            />
+          </div>
+          <button type="submit">Show Details</button>
+        </form>
+        <!-- Display product details here -->
+      </div>
+    </div>
+
     <script>
-      function signout() {
-        // Perform any necessary actions to sign the user out
-        // For example, you can redirect the user to the signout route or clear local storage
-        window.location.href = "/signout"; // Redirect to the signout route
-      }
-      //Function to load Customers records
-      function loadCustomers() {
-        document.querySelector(".recent_order").innerHTML = `
-                    <h2>Customer Records</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>CustomerId</th>
-                                <th>CustomerName</th>
-                                <th>ContactNumber</th>
-                                <th>Email</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for row in dataCustomers %}
-                            <tr>
-                                <td>{{ row[0] }}</td>
-                                <td>{{ row[1] }}</td>
-                                <td>{{ row[2] }}</td>
-                                <td>{{ row[3] }}</td>
-                                <td class="primary">Update</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                `;
-      }
-      // Function to load employee records
-      function loadEmployees() {
-        document.querySelector(".recent_order").innerHTML = `
-              <h2>Employee Records</h2>
-              <table>
-                  <thead>
-                      <tr>
-                          <th>EmployeeID</th> 
-                          <th>Department</th>
-                          <th>Position</th>
-                          <th>Salary</th>
-                          <th>Email</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {% for row in dataEmployees %}
-                      <tr>
-                          <td>{{ row[0] }}</td>
-                          <td>{{ row[5] }}</td>
-                          <td>{{ row[6] }}</td>
-                          <td>{{ row[7] }}</td>
-                          <td>{{ row[9] }}</td>
-                          <td class="primary">Update</td>
-                      </tr>
-                      {% endfor %}
-                  </tbody>
-              </table>
-          `;
-      }
+      // Wait for the DOM to be fully loaded before executing the JavaScript code
+      document.addEventListener("DOMContentLoaded", function () {
+        // Toggle sidebar menu
+        document
+          .getElementById("menu_bar")
+          .addEventListener("click", function () {
+            document.querySelector(".sidebar").classList.toggle("active");
+          });
 
-      // Function to load product records
-      function loadProducts() {
-        document.querySelector(".recent_order").innerHTML = `
-              <h2>Product Records</h2>
-              <table>
-                  <thead>
-                      <tr>
-                          <th>ProductID</th>
-                          <th>ProductName</th>
-                          <th>Category</th>
-                          <th>QuantityInStock</th>
-                          <th>UnitPrice</th>
-                          <th>ReorderLevel</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {% for row in dataProducts %}
-                      <tr>
-                          <td>{{ row[0] }}</td>
-                          <td>{{ row[1] }}</td>
-                          <td>{{ row[2] }}</td>
-                          <td>{{ row[3] }}</td>
-                          <td>{{ row[4] }}</td>
-                          <td>{{ row[5] }}</td>
-                          <td class="primary">Update</td>
-                      </tr>
-                      {% endfor %}
-                  </tbody>
-              </table>
-              <a href="#">Show All</a>
-          `;
-      }
-
-      // Function to load transaction records
-      function loadTransactions() {
-        document.querySelector(".recent_order").innerHTML = `
-              <h2>Transaction Records</h2>
-              <table>
-                  <thead>
-                      <tr>
-                          <th>TransactionID</th>
-                          <th>TransactionDate</th>
-                          <th>ProductID</th>
-                          <th>TransactionType</th>
-                          <th>Quantity</th>
-                          <th>Remarks</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {% for row in dataTransactions %}
-                      <tr>
-                          <td>{{ row[0] }}</td>
-                          <td>{{ row[1] }}</td>
-                          <td>{{ row[2] }}</td>
-                          <td>{{ row[3] }}</td>
-                          <td>{{ row[4] }}</td>
-                          <td>{{ row[5] }}</td>
-                          <td class="primary">Update</td>
-                      </tr>
-                      {% endfor %}
-                  </tbody>
-              </table>
-             
-          `;
-      }
-
-      // Function to load supplier records
-      function loadSuppliers() {
-        document.querySelector(".recent_order").innerHTML = `
-              <h2>Supplier Records</h2>
-              <table>
-                  <thead>
-                      <tr>
-                          <th>SupplierID</th>
-                          <th>SupplierName</th>
-                          <th>ContactNumber</th>
-                          <th>Email</th>
-                          <th>Address</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {% for row in dataSuppliers %}
-                      <tr>
-                          <td>{{ row[0] }}</td>
-                          <td>{{ row[1] }}</td>
-                          <td>{{ row[2] }}</td>
-                          <td>{{ row[3] }}</td>
-                          <td>{{ row[4] }}</td>
-                          <td class="primary">Update</td>
-                      </tr>
-                      {% endfor %}
-                  </tbody>
-              </table>
-             
-          `;
-      }
-
-      // Function to handle click event on anchor tags
-      function handleAnchorClick(event) {
-        // Prevent default link behavior
-        event.preventDefault();
-
-        // Remove 'active' class from all anchor tags
-        const allLinks = document.querySelectorAll(".sidebar a");
-        allLinks.forEach((link) => {
-          link.classList.remove("active");
+        // Close popup forms
+        document.querySelectorAll(".close-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            document.querySelectorAll(".popup-form").forEach((form) => {
+              form.style.display = "none";
+            });
+          });
         });
 
-        // Add 'active' class to the clicked anchor tag
-        event.currentTarget.classList.add("active");
-      }
+        // Show Add Product form
+        document
+          .getElementById("addProductBtn")
+          .addEventListener("click", function () {
+            document.getElementById("addProductForm").style.display = "block";
+          });
 
-      // Attach click event listener to all anchor tags in the sidebar
-      const sidebarLinks = document.querySelectorAll(".sidebar a");
-      sidebarLinks.forEach((link) => {
-        link.addEventListener("click", handleAnchorClick);
+        // Submit Add Product form
+        document
+          .getElementById("addProductForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            // Your form submission logic here for adding a new product
+            console.log("Add Product form submitted");
+            // Close the form after submission
+            document.getElementById("addProductForm").style.display = "none";
+          });
+
+        // Show Update Quantity form
+        document
+          .getElementById("updateQuantityBtn")
+          .addEventListener("click", function () {
+            document.getElementById("updateQuantityForm").style.display =
+              "block";
+          });
+
+        // Submit Update Quantity form
+        document
+          .getElementById("updateQuantityForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            // Your form submission logic here for updating product quantity
+            console.log("Update Quantity form submitted");
+            // Close the form after submission
+            document.getElementById("updateQuantityForm").style.display =
+              "none";
+          });
+
+        // Show Raw Material Requirements form
+        document
+          .getElementById("rawMaterialRequirementsBtn")
+          .addEventListener("click", function () {
+            document.getElementById(
+              "rawMaterialRequirementsForm"
+            ).style.display = "block";
+          });
+
+        // Submit Raw Material Requirements form
+        document
+          .getElementById("rawMaterialRequirementsForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            // Your form submission logic here for raw material requirements
+            console.log("Raw Material Requirements form submitted");
+            // Close the form after submission
+            document.getElementById(
+              "rawMaterialRequirementsForm"
+            ).style.display = "none";
+          });
+
+        // Show Product Details form
+        document
+          .getElementById("showProductDetailsBtn")
+          .addEventListener("click", function () {
+            document.getElementById("showProductDetailsForm").style.display =
+              "block";
+          });
+
+        // Submit Product Details form
+        document
+          .getElementById("showProductDetailsForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            // Your form submission logic here for showing product details
+            console.log("Show Product Details form submitted");
+            // Close the form after submission
+            document.getElementById("showProductDetailsForm").style.display =
+              "none";
+          });
+
+        // Theme toggler (just a demonstration, actual implementation might require more)
+        document.querySelectorAll(".theme-toggler span").forEach((span) => {
+          span.addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+            span.classList.toggle("active");
+          });
+        });
       });
     </script>
-  
   </body>
 </html>
