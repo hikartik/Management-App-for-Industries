@@ -799,7 +799,7 @@ MEDIA QUERY PHONE
             <span class="material-symbols-sharp">person_outline </span>
             <h3>Add New Customer</h3>
           </a>
-          <a href="#">
+          <a href="#" onClick="loadCustomers()">
             <span class="material-symbols-sharp">person_outline</span>
             <h3>Show Customers</h3>
           </a>
@@ -809,12 +809,12 @@ MEDIA QUERY PHONE
             <h3>Add New Order</h3>
           </a>
 
-          <a href="#">
+          <a href="#" onClick="loadOrders()">
             <span class="material-symbols-sharp">shopping_cart</span>
             <h3>Show Orders</h3>
           </a>
 
-          <a href="#">
+          <a href="#" onClick="signout()">
             <span class="material-symbols-sharp">logout </span>
             <h3>logout</h3>
           </a>
@@ -835,18 +835,18 @@ MEDIA QUERY PHONE
             <div class="middle">
               <div class="left">
                 <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h1>₹ {{yearsales[1]}}</h1>
               </div>
               <div class="progress">
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
                 <div class="number">
-                  <p>80%</p>
+                  <p>{{yearsales[0]}}</p>
                 </div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>This Year</small>
           </div>
           <!-- end seling -->
           <!-- start expenses -->
@@ -855,18 +855,18 @@ MEDIA QUERY PHONE
             <div class="middle">
               <div class="left">
                 <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h1>₹ {{monthsales[1]}}</h1>
               </div>
               <div class="progress">
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
                 <div class="number">
-                  <p>80%</p>
+                  <p>{{monthsales[0]}}</p>
                 </div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>This month</small>
           </div>
           <!-- end seling -->
           <!-- start seling -->
@@ -875,66 +875,23 @@ MEDIA QUERY PHONE
             <div class="middle">
               <div class="left">
                 <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h1>₹ {{daysales[1]}}</h1>
               </div>
               <div class="progress">
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
                 <div class="number">
-                  <p>80%</p>
+                  <p>{{daysales[0]}}</p>
                 </div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>today</small>
           </div>
           <!-- end seling -->
         </div>
         <!-- end insights -->
-        <div class="recent_order">
-          <h2>Recent Orders</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Product Number</th>
-                <th>Payments</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-            </tbody>
-          </table>
-          <a href="#">Show All</a>
-        </div>
+        <div class="recent_order"></div>
       </main>
 
       <div class="right">
@@ -949,8 +906,8 @@ MEDIA QUERY PHONE
           </div>
           <div class="profile">
             <div class="info">
-              <p><b>Babar</b></p>
-              <p>Admin</p>
+              <p><b>{{user_name}}</b></p>
+              <p>Sales {{position}}</p>
               <small class="text-muted"></small>
             </div>
             <div class="profile_pic"></div>
@@ -967,7 +924,7 @@ MEDIA QUERY PHONE
       <div class="form-container">
         <span class="close-btn" id="closeForm">&times;</span>
         <h2>Add New Customer</h2>
-        <form id="customerForm">
+        <form id="customerForm" action="/add_customer" method="POST">
           <div class="form-group">
             <label for="customerName">Name:</label>
             <input type="text" id="customerName" name="customerName" required />
@@ -1009,35 +966,26 @@ MEDIA QUERY PHONE
       <div class="form-container">
         <span class="close-btn" id="closeOrderForm">&times;</span>
         <h2>Add New Order</h2>
-        <form id="orderForm">
+        <form id="orderForm" action="/add_order" method="POST">
           <div class="form-group">
-            <label for="productName">Product Name:</label>
-            <input type="text" id="productName" name="productName" required />
+            <label for="orderDate">Order Date:</label>
+            <input type="date" id="orderDate" name="orderDate" required />
           </div>
           <div class="form-group">
-            <label for="productNumber">Product Number:</label>
-            <input
-              type="text"
-              id="productNumber"
-              name="productNumber"
-              required
-            />
+            <label for="customerID">Customer ID:</label>
+            <input type="text" id="customerID" name="customerID" required />
+          </div>
+          <div class="form-group">
+            <label for="productID">Product ID:</label>
+            <input type="text" id="productID" name="productID" required />
           </div>
           <div class="form-group">
             <label for="quantity">Quantity:</label>
             <input type="text" id="quantity" name="quantity" required />
           </div>
           <div class="form-group">
-            <label for="paymentStatus">Payment Status:</label>
-            <select id="paymentStatus" name="paymentStatus" required>
-              <option value="Due">Due</option>
-              <option value="Paid">Paid</option>
-            </select>
-          </div>
-          <!-- Add ID for order status -->
-          <div class="form-group">
-            <label for="orderStatus">Order Status:</label>
-            <input type="text" id="orderStatus" name="orderStatus" required />
+            <label for="totalAmount">Total Amount:</label>
+            <input type="text" id="totalAmount" name="totalAmount" required />
           </div>
           <button type="submit">Save</button>
         </form>
@@ -1045,6 +993,101 @@ MEDIA QUERY PHONE
     </div>
 
     <script>
+      function signout() {
+        // Perform any necessary actions to sign the user out
+        // For example, you can redirect the user to the signout route or clear local storage
+        window.location.href = "/signout"; // Redirect to the signout route
+      }
+      // Your existing JavaScript code remains here
+      function loadCustomers() {
+        document.querySelector(".recent_order").innerHTML = `
+                    <h2>Customer Records</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>CustomerId</th>
+                                <th>CustomerName</th>
+                                <th>ContactNumber</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in dataCustomers %}
+                            <tr>
+                                <td>{{ row[0] }}</td>
+                                <td>{{ row[1] }}</td>
+                                <td>{{ row[2] }}</td>
+                                <td>{{ row[3] }}</td>
+                                <td class="primary">Update</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                `;
+      }
+
+      function loadOrders() {
+        document.querySelector(".recent_order").innerHTML = `
+                    <h2>Order Records</h2>
+                    <table>
+            <thead>
+                <tr>
+                    <th>OrderID</th>
+                    <th>OrderDate</th>
+                    <th>CustomerID</th>
+                    <th>ProductID</th>
+                    <th>Quantity</th>
+                    <th>TotalAmount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                            {% for row in dataOrders %}
+                            <tr>
+                                <td>{{ row[0] }}</td>
+                                <td>{{ row[1] }}</td>
+                                <td>{{ row[2] }}</td>
+                                <td>{{ row[3] }}</td>
+                                <td>{{ row[4] }}</td>
+                                <td>{{ row[5] }}</td>
+                                <td class="primary">View</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                `;
+      }
+
+      // JavaScript code to handle form submission
+      document
+        .getElementById("customerForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Collect form data
+          const formData = new FormData(this);
+
+          // Send form data to backend
+          fetch("/add_customer", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => {
+              if (response.ok) {
+                window.location.href = '/sales/dashboard';
+                // Handle successful response (e.g., show success message)
+                console.log("Customer added successfully");
+              } else {
+                // Handle error response
+                console.error("Failed to add customer");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+
       // Your existing JavaScript code remains here
 
       const addCustomerForm = document.getElementById("addCustomerForm");
@@ -1078,12 +1121,6 @@ MEDIA QUERY PHONE
         addCustomerForm.style.display = "none";
       });
 
-      // JavaScript code for opening, closing, and handling the order form
-
-      // Get references to necessary elements
-      // JavaScript code for opening, closing, and handling the order form
-
-      // Get references to necessary elements
       const openOrderFormBtn = document.getElementById("openOrderFormBtn");
       const addOrderForm = document.getElementById("addOrderForm");
       const closeOrderFormBtn = document.getElementById("closeOrderForm");
@@ -1102,26 +1139,61 @@ MEDIA QUERY PHONE
       // Function to handle form submission
       orderForm.addEventListener("submit", (e) => {
         e.preventDefault();
+
         // Get order details from the form
-        const productName = document.getElementById("productName").value;
-        const productNumber = document.getElementById("productNumber").value;
-        const quantity = document.getElementById("quantity").value; // Added quantity
-        const paymentStatus = document.getElementById("paymentStatus").value;
-        // Add orderStatus variable
-        const orderStatus = document.getElementById("orderStatus").value;
+        const orderDate = document.getElementById("orderDate").value;
+        const customerID = document.getElementById("customerID").value;
+        const productID = document.getElementById("productID").value;
+        const quantity = document.getElementById("quantity").value;
+        const totalAmount = document.getElementById("totalAmount").value;
 
-        // Perform validation and save order logic here
+        // Prepare data to send to the server
+        const formData = new FormData();
+        formData.append("orderDate", orderDate);
+        formData.append("customerID", customerID);
+        formData.append("productID", productID);
+        formData.append("quantity", quantity);
+        formData.append("totalAmount", totalAmount);
 
-        // For demonstration purposes, just log the order details
-        console.log("Product Name:", productName);
-        console.log("Product Number:", productNumber);
-        console.log("Quantity:", quantity);
-        console.log("Payment Status:", paymentStatus);
-        // Log orderStatus
-        console.log("Order Status:", orderStatus);
+        // Send form data to the server using fetch
+        fetch("/add_order", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => {
+            if (response.ok) {
+              window.location.href = '/sales/dashboard';
+              console.log("Order added successfully!");
+              // Close the form after successful submission
+              addOrderForm.style.display = "none";
+            } else {
+              console.error("Failed to add order.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
 
-        // Close the form after saving
-        addOrderForm.style.display = "none";
+      // Function to handle click event on anchor tags
+      function handleAnchorClick(event) {
+        // Prevent default link behavior
+        event.preventDefault();
+
+        // Remove 'active' class from all anchor tags
+        const allLinks = document.querySelectorAll(".sidebar a");
+        allLinks.forEach((link) => {
+          link.classList.remove("active");
+        });
+
+        // Add 'active' class to the clicked anchor tag
+        event.currentTarget.classList.add("active");
+      }
+
+      // Attach click event listener to all anchor tags in the sidebar
+      const sidebarLinks = document.querySelectorAll(".sidebar a");
+      sidebarLinks.forEach((link) => {
+        link.addEventListener("click", handleAnchorClick);
       });
     </script>
   </body>

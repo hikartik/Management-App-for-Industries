@@ -728,7 +728,7 @@ MEDIA QUERY PHONE
             <div class="middle">
               <div class="left">
                 <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h1>₹ {{totalsales}}</h1>
               </div>
               <div class="progress">
                 <svg>
@@ -737,7 +737,7 @@ MEDIA QUERY PHONE
                 <div class="number"><p>80%</p></div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>All time</small>
           </div>
           <!-- end seling -->
           <!-- start expenses -->
@@ -745,17 +745,17 @@ MEDIA QUERY PHONE
             <span class="material-symbols-sharp">local_mall</span>
             <div class="middle">
               <div class="left">
-                <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h3>Total Customers</h3>
+                <h1>{{totalcustomers}}</h1>
               </div>
               <div class="progress">
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
-                <div class="number"><p>80%</p></div>
+                <div class="number"><p>70%</p></div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>All time</small>
           </div>
           <!-- end seling -->
           <!-- start seling -->
@@ -763,17 +763,17 @@ MEDIA QUERY PHONE
             <span class="material-symbols-sharp">stacked_line_chart</span>
             <div class="middle">
               <div class="left">
-                <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h3>Total Employees</h3>
+                <h1>{{totalemployees}}</h1>
               </div>
               <div class="progress">
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
-                <div class="number"><p>80%</p></div>
+                <div class="number"><p>85%</p></div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>Current..</small>
           </div>
           <!-- end seling -->
         </div>
@@ -799,86 +799,73 @@ MEDIA QUERY PHONE
           </div>
           <div class="profile">
             <div class="info">
-              <p><b>{{user_name[0]}}</b></p>
+              <p><b>{{user_name}}</b></p>
               <p>{{position}}</p>
               <small class="text-muted"></small>
             </div>
             <div class="profile-photo">
-              <img src="./images/profile-1.jpg" alt="" />
+              <span class="material-symbols-sharp">person_outline </span>
             </div>
           </div>
         </div>
 
         <div class="recent_updates">
-          <h2>Recent Update</h2>
+          <h2>Recent Orders</h2>
           <div class="updates">
-            <div class="update">
-              <div class="profile-photo">
-                <img src="./images/profile-4.jpg" alt="" />
+            {% for order in recentorders %}
+              <div class="update">
+                <div class="icon">
+                  <span class=" material-symbols-sharp">shopping_cart</span>
+                </div>
+                <div class="message">
+                  <p><b>{{ order[0] }}</b> ordered for {{ order[1] }} on {{ order[2] }}</p>
+                </div>
               </div>
-              <div class="message">
-                <p><b>Babar</b> Recived his order of USB</p>
-              </div>
-            </div>
-            <div class="update">
-              <div class="profile-photo">
-                <img src="./images/profile-3.jpg" alt="" />
-              </div>
-              <div class="message">
-                <p><b>Ali</b> Recived his order of USB</p>
-              </div>
-            </div>
-            <div class="update">
-              <div class="profile-photo">
-                <img src="./images/profile-2.jpg" alt="" />
-              </div>
-              <div class="message">
-                <p><b>Ramzan</b> Recived his order of USB</p>
-              </div>
-            </div>
+            {% endfor %}
           </div>
+          
         </div>
 
         <div class="sales-analytics">
-          <h2>Sales Analytics</h2>
+          <h2>Top Employees</h2>
 
           <div class="item onlion">
             <div class="icon">
-              <span class="material-symbols-sharp">shopping_cart</span>
+              <span class="material-symbols-sharp">stacked_line_chart</span>
             </div>
             <div class="right_text">
               <div class="info">
-                <h3>Onlion Orders</h3>
-                <small class="text-muted">Last seen 2 Hours</small>
+                <h3>Kartik Kumar</h3>
+                <small class="text-muted">This Month</small>
               </div>
-              <h5 class="danger">-17%</h5>
-              <h3>3849</h3>
+              <h5 class="danger">99% attendence</h5>
+              <h3>120% target</h3>
             </div>
           </div>
           <div class="item onlion">
             <div class="icon">
-              <span class="material-symbols-sharp">shopping_cart</span>
+              <span class="material-symbols-sharp">stacked_line_chart</span>
             </div>
             <div class="right_text">
               <div class="info">
-                <h3>Onlion Orders</h3>
-                <small class="text-muted">Last seen 2 Hours</small>
+                <h3>Rishabh Yadav</h3>
+                <small class="text-muted">Last Month</small>
               </div>
-              <h5 class="success">-17%</h5>
-              <h3>3849</h3>
+              <h5 class="success">89% attendence</h5>
+              <h3>110% target</h3>
             </div>
           </div>
           <div class="item onlion">
             <div class="icon">
-              <span class="material-symbols-sharp">shopping_cart</span>
+              <span class="material-symbols-sharp">stacked_line_chart</span>
             </div>
             <div class="right_text">
               <div class="info">
-                <h3>Online Orders</h3>
-                <small class="text-muted">Last seen 2 Hours</small>
+                <h3>Nikhil Gupta</h3>
+                <small class="text-muted">Last year</small>
               </div>
-              <h5 class="danger">-17%</h5>
-              <h3>3849</h3>
+              <h5 class="danger">87% attendence</h5>
+              <h3>110% target</h3>
             </div>
           </div>
         </div>
@@ -1076,6 +1063,5 @@ MEDIA QUERY PHONE
         link.addEventListener("click", handleAnchorClick);
       });
     </script>
-  
   </body>
 </html>

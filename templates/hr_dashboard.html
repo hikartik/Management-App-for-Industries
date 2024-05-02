@@ -803,15 +803,15 @@ MEDIA QUERY PHONE
             <span class="material-symbols-sharp">delete_outline </span>
             <h3>Delete Employee</h3>
           </a>
-          <a href="#" id="openUpdateEmployeeFormBtn">
+          <a href="#" onClick="loadEmployees()">
             <span class="material-symbols-sharp">edit </span>
-            <h3>Update Employee Details</h3>
+            <h3>Show Employees</h3>
           </a>
           <a href="#" id="openViewEmployeeFormBtn">
             <span class="material-symbols-sharp">visibility</span>
-            <h3>View Employee Details</h3>
+            <h3>Search Employee</h3>
           </a>
-          <a href="#">
+          <a href="#" onClick="signout()">
             <span class="material-symbols-sharp">logout </span>
             <h3>logout</h3>
           </a>
@@ -831,19 +831,19 @@ MEDIA QUERY PHONE
             <span class="material-symbols-sharp">trending_down</span>
             <div class="middle">
               <div class="left">
-                <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h3>Total Employees</h3>
+                <h1>{{totalEmployees[0]}}</h1>
               </div>
               <div class="progress">
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
                 <div class="number">
-                  <p>80%</p>
+                  <p>100%</p>
                 </div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>Experienced</small>
           </div>
           <!-- end seling -->
           <!-- start expenses -->
@@ -851,19 +851,19 @@ MEDIA QUERY PHONE
             <span class="material-symbols-sharp">local_mall</span>
             <div class="middle">
               <div class="left">
-                <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h3>Total Manager</h3>
+                <h1>{{totalManagers[0]}}</h1>
               </div>
               <div class="progress">
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
                 <div class="number">
-                  <p>80%</p>
+                  <p>{{ 100*(totalManagers[0]/totalEmployees[0]) }}%</p>
                 </div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>Percentage</small>
           </div>
           <!-- end seling -->
           <!-- start seling -->
@@ -871,67 +871,24 @@ MEDIA QUERY PHONE
             <span class="material-symbols-sharp">stacked_line_chart</span>
             <div class="middle">
               <div class="left">
-                <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h3>Female Employees</h3>
+                <h1>{{totalFemales[0]}}</h1>
               </div>
               <div class="progress">
                 <svg>
                   <circle r="30" cy="40" cx="40"></circle>
                 </svg>
                 <div class="number">
-                  <p>80%</p>
+                  <p>{{100*(totalFemales[0]/totalEmployees[0])}}%</p>
                 </div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>Percentage</small>
           </div>
           <!-- end seling -->
         </div>
         <!-- end insights -->
-        <div class="recent_order">
-          <h2>Recent Orders</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Product Number</th>
-                <th>Payments</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-            </tbody>
-          </table>
-          <a href="#">Show All</a>
-        </div>
+        <div class="recent_order"></div>
       </main>
 
       <div class="right">
@@ -946,8 +903,8 @@ MEDIA QUERY PHONE
           </div>
           <div class="profile">
             <div class="info">
-              <p><b>Babar</b></p>
-              <p>Admin</p>
+              <p><b>{{user_name}}</b></p>
+              <p>HR {{position}}</p>
               <small class="text-muted"></small>
             </div>
             <div class="profile_pic"></div>
@@ -964,37 +921,49 @@ MEDIA QUERY PHONE
       <div class="form-container">
         <span class="close-btn" id="closeEmployeeForm">&times;</span>
         <h2>Add New Employee</h2>
-        <form id="employeeForm">
+        <form id="employeeForm" action="/add_employee" method="POST">
           <div class="form-group">
-            <label for="employeeName">Name:</label>
-            <input type="text" id="employeeName" name="employeeName" required />
+            <label for="employeeFirstName">First Name:</label>
+            <input
+              type="text"
+              id="employeeFirstName"
+              name="employeeFirstName"
+              required
+            />
           </div>
+
           <div class="form-group">
             <label for="employeeEmail">Email:</label>
             <input
-              type="email"
+              type="text"
               id="employeeEmail"
               name="employeeEmail"
               required
             />
           </div>
           <div class="form-group">
-            <label for="employeePhone">Phone:</label>
+            <label for="employeeGender">Gender:</label>
+            <select id="employeeGender" name="employeeGender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="employeeDepartment">Department:</label>
             <input
-              type="tel"
-              id="employeePhone"
-              name="employeePhone"
-              required
+              type="text"
+              id="employeeDepartment"
+              name="employeeDepartment"
             />
           </div>
           <div class="form-group">
-            <label for="employeeAddress">Address:</label>
-            <input
-              type="text"
-              id="employeeAddress"
-              name="employeeAddress"
-              required
-            />
+            <label for="employeePosition">Position:</label>
+            <input type="text" id="employeePosition" name="employeePosition" />
+          </div>
+          <div class="form-group">
+            <label for="employeeSalary">Salary:</label>
+            <input type="text" id="employeeSalary" name="employeeSalary" />
           </div>
           <button type="submit">Save</button>
         </form>
@@ -1002,75 +971,20 @@ MEDIA QUERY PHONE
     </div>
 
     <!-- Delete Employee Popup Form -->
-    <div class="popup-form" id="deleteEmployeeForm">
-      <div class="form-container">
-        <span class="close-btn" id="closeDeleteEmployeeForm">&times;</span>
-        <h2>Delete Employee</h2>
-        <form id="deleteEmployeeForm">
-          <div class="form-group">
-            <label for="employeeID">Employee ID:</label>
-            <input type="text" id="employeeID" name="employeeID" required />
-          </div>
-          <button type="submit">Delete</button>
-        </form>
+<div class="popup-form" id="deleteEmployeeForm">
+  <div class="form-container">
+    <span class="close-btn" id="closeDeleteEmployeeForm">&times;</span>
+    <h2>Delete Employee</h2>
+    <form id="deleteEmployeeForm" action="/delete_employee" method="POST">
+      <div class="form-group">
+        <label for="deleteEmployeeID">Employee ID:</label>
+        <input type="text" id="deleteEmployeeID" name="deleteEmployeeID" required />
       </div>
-    </div>
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+</div>
 
-    <!-- Update Employee Popup Form -->
-    <div class="popup-form" id="updateEmployeeForm">
-      <div class="form-container">
-        <span class="close-btn" id="closeUpdateEmployeeForm">&times;</span>
-        <h2>Update Employee Details</h2>
-        <form id="updateEmployeeForm">
-          <div class="form-group">
-            <label for="updateEmployeeID">Employee ID:</label>
-            <input
-              type="text"
-              id="updateEmployeeID"
-              name="updateEmployeeID"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="updateEmployeeName">Name:</label>
-            <input
-              type="text"
-              id="updateEmployeeName"
-              name="updateEmployeeName"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="updateEmployeeEmail">Email:</label>
-            <input
-              type="email"
-              id="updateEmployeeEmail"
-              name="updateEmployeeEmail"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="updateEmployeePhone">Phone:</label>
-            <input
-              type="tel"
-              id="updateEmployeePhone"
-              name="updateEmployeePhone"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="updateEmployeeAddress">Address:</label>
-            <input
-              type="text"
-              id="updateEmployeeAddress"
-              name="updateEmployeeAddress"
-              required
-            />
-          </div>
-          <button type="submit">Update</button>
-        </form>
-      </div>
-    </div>
 
     <!-- View Employee Popup Form -->
     <div class="popup-form" id="viewEmployeeForm">
@@ -1094,6 +1008,117 @@ MEDIA QUERY PHONE
     </div>
 
     <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const deleteEmployeeForm = document.getElementById("deleteEmployeeForm");
+  const closeDeleteEmployeeFormBtn = document.getElementById("closeDeleteEmployeeForm");
+
+  if (deleteEmployeeForm && closeDeleteEmployeeFormBtn) {
+    closeDeleteEmployeeFormBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      deleteEmployeeForm.style.display = "none";
+    });
+
+    deleteEmployeeForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const deleteEmployeeID = document.getElementById("deleteEmployeeID");
+
+      if (deleteEmployeeID) {
+        const employeeID = deleteEmployeeID.value;
+        fetch("/delete_employee", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({ deleteEmployeeID: employeeID }), // Use the correct parameter name
+        })
+          .then((response) => {
+            if (response.ok) {
+              window.location.href = "/hr/dashboard";
+            } else {
+              console.error("Failed to delete employee");
+              alert("Failed to delete employee. Please try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again later.");
+          });
+      } else {
+        console.error("deleteEmployeeID element not found");
+      }
+    });
+  } else {
+    console.error("deleteEmployeeForm or closeDeleteEmployeeFormBtn not found");
+  }
+});
+
+
+        // JavaScript for handling form submission
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the form element
+        const form = document.getElementById("employeeForm");
+
+        // Add event listener for form submission
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Get form data
+          const formData = new FormData(form);
+
+          // Send form data to backend route using fetch API
+          fetch("/add_employee", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => {
+              if (response.ok) {
+                // If the response is ok, redirect to the manager dashboard or any other page
+                window.location.href = "/hr/dashboard";
+              } else {
+                // Handle error response
+                console.error("Failed to add employee");
+                // Optionally, display an error message to the user
+                alert("Failed to add employee. Please try again.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              // Optionally, display an error message to the user
+              alert("An error occurred. Please try again later.");
+            });
+        });
+      });
+      // Function to load employee records
+      function loadEmployees() {
+        document.querySelector(".recent_order").innerHTML = `
+              <h2>Employee Records</h2>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>EmployeeID</th> 
+                          <th>Department</th>
+                          <th>Position</th>
+                          <th>Salary</th>
+                          <th>Email</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for row in dataEmployees %}
+                      <tr>
+                          <td>{{ row[0] }}</td>
+                          <td>{{ row[5] }}</td>
+                          <td>{{ row[6] }}</td>
+                          <td>{{ row[7] }}</td>
+                          <td>{{ row[9] }}</td>
+                          <td class="primary">Update</td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+          `;
+      }
+
       const addEmployeeForm = document.getElementById("addEmployeeForm");
       const openFormBtn = document.getElementById("openFormBtn");
       const closeEmployeeFormBtn = document.getElementById("closeEmployeeForm");
@@ -1161,6 +1186,59 @@ MEDIA QUERY PHONE
 
         // Close the form after submission
         viewEmployeeForm.style.display = "none";
+      });
+
+      const deleteEmployeeForm = document.getElementById("deleteEmployeeForm");
+      const openDeleteEmployeeFormBtn = document.getElementById(
+        "openDeleteEmployeeFormBtn"
+      );
+      const closeDeleteEmployeeFormBtn = document.getElementById(
+        "closeDeleteEmployeeForm"
+      );
+
+      // Function to open the delete employee form
+      openDeleteEmployeeFormBtn.addEventListener("click", () => {
+        deleteEmployeeForm.style.display = "block";
+      });
+
+      // Function to close the delete employee form
+      closeDeleteEmployeeFormBtn.addEventListener("click", () => {
+        deleteEmployeeForm.style.display = "none";
+      });
+
+      // Function to handle form submission
+      deleteEmployeeForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Get employee ID from the form
+        const employeeID = document.getElementById("deleteEmployeeID").value;
+
+        // Perform logic to delete employee using employeeID
+        // For demonstration purposes, just log the employee ID
+        console.log("Delete Employee with ID:", employeeID);
+
+        // Close the form after submission
+        deleteEmployeeForm.style.display = "none";
+      });
+
+      // Function to handle click event on anchor tags
+      function handleAnchorClick(event) {
+        // Prevent default link behavior
+        event.preventDefault();
+
+        // Remove 'active' class from all anchor tags
+        const allLinks = document.querySelectorAll(".sidebar a");
+        allLinks.forEach((link) => {
+          link.classList.remove("active");
+        });
+
+        // Add 'active' class to the clicked anchor tag
+        event.currentTarget.classList.add("active");
+      }
+
+      // Attach click event listener to all anchor tags in the sidebar
+      const sidebarLinks = document.querySelectorAll(".sidebar a");
+      sidebarLinks.forEach((link) => {
+        link.addEventListener("click", handleAnchorClick);
       });
 
       // Add any additional functionality or event listeners as needed for your HR department dashboard
