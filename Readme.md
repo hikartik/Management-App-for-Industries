@@ -14,8 +14,6 @@
 - [Usage](#usage)
 - [Technology Stack](#technology-stack)
 - [Challenges & Future Enhancements](#challenges--future-enhancements)
-- [License](#license)
-- [Contact](#contact)
 
 ---
 
