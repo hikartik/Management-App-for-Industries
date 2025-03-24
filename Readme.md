@@ -71,5 +71,31 @@ The UI is designed with modern web technologies:
 
 3. **Project Initialization:**  
    Open your terminal and run the following command to start the project:
+   
    ```bash
    python main.py
+   ```
+
+---
+
+## Usage
+Once the project is running, access the web application via your preferred browser. FusionOps provides dedicated interfaces for managers, sales, finance, production, and HR—ensuring tailored functionality for each department.
+
+---
+
+## Technology Stack
+- **Frontend:** HTML, CSS, JavaScript, Bootstrap
+- **Backend:** Flask (Python)
+- **Database:** MySQL (managed via XAMPP)
+- **Connectivity:** MySQL Connector for Python
+
+---
+
+## Challenges & Future Enhancements
+- **Integration Complexity:** Merging diverse modules (frontend and backend) posed significant challenges.
+- **Database Optimization:** Enhanced indexing and query optimization are ongoing improvements.
+- **Security Enhancements:** Continuous updates and multi-factor authentication are planned.
+- **Scalability:** Future work includes advanced load testing and performance tuning.
+- **Third-Party Integrations:** Plans to integrate with CRM and accounting systems for broader functionality.
+
+---
